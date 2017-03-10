@@ -1,0 +1,53 @@
+<!--
+  Generated template for the Playlist page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Playlist</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<img src="assets/images/user.png" alt="img">
+	<strong>{{userID}}</strong>
+	<h1>Nombre de Usuario</h1>
+
+	<ion-list>
+	    
+	    <ion-item (click)="openPlaylist(1)">
+	      <ion-thumbnail item-left>
+	        <img src="assets/images/user.png">
+	      </ion-thumbnail>
+	      <h2>Titulo de la playlist 1</h2>
+	      <p># Canciones</p>
+	    </ion-item>
+
+	     <ion-item (click)="openPlaylist(2)">
+	      <ion-thumbnail item-left>
+	        <img src="assets/images/user.png">
+	      </ion-thumbnail>
+	      <h2>Titulo de la playlist 2</h2>
+	      <p># Canciones</p>
+	    </ion-item>
+
+	     <ion-item (click)="openPlaylist(3)">
+	      <ion-thumbnail item-left>
+	        <img src="assets/images/user.png">
+	      </ion-thumbnail>
+	      <h2>Titulo de la playlist 3</h2>
+	      <p># Canciones</p>
+	    </ion-item>
+
+
+  	</ion-list>
+	
+</ion-content>

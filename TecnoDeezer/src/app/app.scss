@@ -22,3 +22,27 @@
 .texto{
 	color:map-get($colors,midnight_blue);
 }
+
+.user{
+		
+		img{
+	
+			margin:0 auto;
+			max-width:100px;
+			box-shadow:0 1px 2px rgba(black,.3);
+			border-radius:50%;
+		}
+
+		h1{
+			color:#333;
+			text-align:center;
+			margin:10px 0 2px;
+		}
+		
+		/*& indica que los elementos que tengan la clase user y ademas playlist tomarane estos estilos*/
+		&.playlist img{
+
+			border-radius:4px;
+		}
+}
+

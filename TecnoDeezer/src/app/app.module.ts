@@ -8,6 +8,8 @@ import { HomePage } from '../pages/home/home';
 import { PerfilesPage } from '../pages/perfiles/perfiles';
 import { ContactosPage } from '../pages/contactos/contactos';
 import { AcercaPage } from '../pages/acerca/acerca';
+import { PlaylistPage } from '../pages/playlist/playlist';
+import { CancionesPage } from '../pages/canciones/canciones';
 
 /*Page personales*/
 
@@ -17,7 +19,9 @@ import { AcercaPage } from '../pages/acerca/acerca';
     HomePage,
     PerfilesPage,
     ContactosPage,
-    AcercaPage
+    AcercaPage,
+    PlaylistPage,
+    CancionesPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -28,7 +32,9 @@ import { AcercaPage } from '../pages/acerca/acerca';
     HomePage,
     PerfilesPage,
     ContactosPage,
-    AcercaPage
+    AcercaPage,
+    PlaylistPage,
+    CancionesPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
 })
