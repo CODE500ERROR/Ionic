@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-navbar color="blue">
+    <ion-title>Registrar</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <form novalidate (ngSubmit)="saveData( $event )" [formGroup]="myForm">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Correo:</ion-label>
+        <ion-input type="email" placeholder="Ej: mail@mail.com" formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="myForm.get('email').errors && myForm.get('email').dirty">
+        <p color="danger" *ngIf="myForm.get('email').hasError('required')">Campo requerido</p>
+        <p color="danger" *ngIf="myForm.get('email').hasError('minlength')">Minimo 10 campos</p>
+        <p color="danger" *ngIf="myForm.get('email').hasError('maxlength')">Maximo 15 campos</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>nickname:</ion-label>
+        <ion-input type="nickname" placeholder="Ej: mail@mail.com" formControlName="nickname"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="myForm.get('nickname').errors && myForm.get('nickname').dirty">
+        <p color="danger" *ngIf="myForm.get('nickname').hasError('required')">Campo requerido</p>
+        <p color="danger" *ngIf="myForm.get('nickname').hasError('pattern')">no debe tener caracteres</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>edad:</ion-label>
+        <ion-input type="number"  formControlName="age"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="myForm.get('age').errors && myForm.get('age').dirty">
+        <p color="danger" *ngIf="myForm.get('age').hasError('required')">Campo requerido</p>
+        <p color="danger" *ngIf="myForm.get('age').hasError('isold')">tienes que ser mayor</p>
+      </ion-item>
+      <div formGroupName="passwordGroup">
+        <ion-item>
+          <ion-label stacked>Password:</ion-label>
+          <ion-input type="password" placeholder="Ej: 123345" formControlName="password"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Confirmar Password:</ion-label>
+          <ion-input type="password" placeholder="Ej: 123345" formControlName="confirmPassword"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="myForm.get('passwordGroup').errors && myForm.get('passwordGroup').get('confirmPassword').dirty">
+          <p color="danger">Las constraseñas no son iguales</p>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-label>Banda</ion-label>
+        <ion-select cancelText="Nah" okText="Okay!" formControlName="rockband">
+          <ion-option value="1">Nirvana</ion-option>
+          <ion-option value="2">Los prisioneros</ion-option>
+          <ion-option value="3">Cafe tacuba</ion-option>
+          <ion-option value="4">Molotov</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cumpleaños</ion-label>
+        <ion-datetime displayFormat="MM/DD/YYYY" formControlName="date"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>numeros hijos</ion-label>
+        <ion-range min="0" max="10" color="secondary" pin="true" formControlName="children">
+          <ion-label range-left>0</ion-label>
+          <ion-label range-right>10</ion-label>
+        </ion-range>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Tu sabor favorito</ion-list-header>
+      <ion-item>
+        <ion-label>Vainilla</ion-label>
+        <ion-checkbox color="blue" formControlName="vainilla"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Chocolate</ion-label>
+        <ion-checkbox color="blue" formControlName="chocolate"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fresa</ion-label>
+        <ion-checkbox color="blue" formControlName="fresa"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+    <ion-list radio-group formControlName="language">
+      <ion-list-header>
+        Language
+      </ion-list-header>
+
+      <ion-item>
+        <ion-label>Go</ion-label>
+        <ion-radio value="go" ></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Rust</ion-label>
+        <ion-radio value="rust"></ion-radio>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Python</ion-label>
+        <ion-radio value="python"></ion-radio>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>Notificaciones</ion-list-header>
+      <ion-item>
+        <ion-label>Push</ion-label>
+        <ion-toggle formControlName="enablePush"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-toggle formControlName="enableEmail"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <button ion-button block  type="submit" [disabled]="myForm.invalid" icon-left>
+        <ion-icon name="log-in"></ion-icon>
+        Registrar
+      </button>
+    </div>
+  </form>
+</ion-content>

@@ -1,0 +1,22 @@
+page-styles {
+ 
+ h1.title{
+   color: $my-color;
+ }
+ div.text{
+   @include my-border(10px, $my-color);
+   > p{
+     color: white;
+     strong{
+       color: red;
+     }
+   }
+ }
+ div.otro{
+   p{
+     @include my-font-size(30px);
+   }
+ }
+
+ 
+}
