@@ -1,0 +1,28 @@
+<ion-menu id="menu" [content]="content">
+  <ion-content>
+    <ion-list>
+      <ion-list-header>
+        Gallery
+      </ion-list-header>
+      <button ion-item menuClose *ngFor="let page of menuPages" (click)="openTabPage(page)">
+        <ion-icon item-left [name]="page.icon"></ion-icon>
+        {{page.title}}
+      </button>
+    </ion-list>
+    <ion-list>
+      <ion-list-header>
+        Profile
+      </ion-list-header>
+      <button ion-item menuClose (click)="openTasksPage()">
+        <ion-icon item-left name="list"></ion-icon>
+        Tasks
+      </button>
+      <button ion-item menuClose (click)="logout()">
+        <ion-icon item-left name="close"></ion-icon>
+        Cerrar sesión
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #content [root]="rootPage"></ion-nav>
