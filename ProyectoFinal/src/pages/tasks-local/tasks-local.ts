@@ -1,28 +1,30 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 
-import { TasksService } from '../../providers/tasks-service';
-
+import { TasksLocalService } from '../../providers/tasks-local-service';
 
 @Component({
-  selector: 'page-tasks',
-  templateUrl: 'tasks.html'
+  selector: 'page-tasks-local',
+  templateUrl: 'tasks-local.html'
 })
-export class TasksPage {
+export class TasksLocalPage {
 
-  tasks: any[];
+  tasks: any[] = [];
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public tasksService: TasksService,
+    public tasksService: TasksLocalService,
     public alertCtrl: AlertController
   ) {}
 
   ionViewDidLoad() {
-    this.tasksService.getAll('8')
+    this.tasksService.getAll()
     .then((tasks: any) =>{
-      this.tasks = tasks;
+      console.log('data', tasks);
+      if(tasks){
+        this.tasks = JSON.parse(tasks);
+      }
     })
     .catch(error =>{
       console.error(error);
@@ -52,10 +54,11 @@ export class TasksPage {
             let newTask ={
               title: data.title,
               completed: false
-            }
-            this.tasksService.create( newTask )
+            };
+            this.tasks.unshift( newTask );
+            this.tasksService.saveTasks( this.tasks )
             .then(resultTask =>{
-              this.tasks.unshift( resultTask );
+              console.log( resultTask );
             })
             .catch(error =>{
               console.error( error );
@@ -69,7 +72,7 @@ export class TasksPage {
 
   onChange( task: any){
     task.completed = !task.completed;
-    this.tasksService.update( task );
+    this.tasksService.saveTasks( this.tasks );
   }
 
   updateTask( task: any, index: any ){
@@ -93,15 +96,8 @@ export class TasksPage {
         {
           text: 'Save',
           handler: data => {
-            let updatetask = Object.assign({}, task);
-            updatetask.title = data.title;
-            this.tasksService.update( updatetask )
-            .then(resultTask =>{
-              this.tasks[index] = resultTask;
-            })
-            .catch(error =>{
-              console.error( error );
-            });
+            task.title = data.title;
+            this.tasksService.saveTasks( this.tasks );
           }
         }
       ]
@@ -110,13 +106,9 @@ export class TasksPage {
   }
 
   deleteTask(task, index){
-    this.tasksService.delete(task.id)
-    .then(resultTask =>{
-      this.tasks.splice(index, 1);
-    })
-    .catch(error =>{
-      console.error( error );
-    });
+    this.tasks.splice(index, 1);
+    this.tasksService.saveTasks( this.tasks );
   }
 
 }
+
