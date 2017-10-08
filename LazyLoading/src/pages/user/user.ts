@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { UserProvider } from '../../providers/user/user';
+
 /**
  * Generated class for the UserPage page.
  *
@@ -14,16 +16,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user.html',
 })
 export class UserPage {
+  
+  users: any[] = [];
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public userSvc:UserProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserPage');
+    this.userSvc.getAll()
+    .subscribe(data =>{
+      this.users = data.results;
+    }, error =>{
+      console.error(error);
+    });
   }
 
-  goToUserDetailPage(){
-    this.navCtrl.push('UserDetailPage');
+  goToUserDetailPage(user){
+    this.navCtrl.push('UserDetailPage', {
+      user: user
+    });
   }
+
+
 
 }
