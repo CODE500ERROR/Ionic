@@ -23,6 +23,7 @@ export class LoginPage {
 
   save(event){
     event.preventDefault();
+    this.goToHomePage();
   }
 
 }

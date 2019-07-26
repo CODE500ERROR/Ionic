@@ -1,17 +1,18 @@
 <ion-header>
   <ion-navbar>
     <ion-title>Billeteras</ion-title>
+    <button ion-button clear item-end (click)="create()">
+      <ion-icon name="add-circle"></ion-icon>
+  </button>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <button ion-button clear item-end (click)="create()">
-        <ion-icon name="add-circle"></ion-icon>
-    </button>
+
 
       <ion-list>
           <ion-item-sliding *ngFor="let item of wallets | async; let i = index" >
-            <ion-item>
+            <ion-item (click)="goToDetail()">
                 <h2>{{item.title}}</h2>
                 <p>$ {{item.amount}}</p>  
             </ion-item>
